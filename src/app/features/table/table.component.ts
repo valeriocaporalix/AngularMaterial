@@ -47,6 +47,8 @@ export class TableComponent {
     }
   ])
 
+  editElement : CardModel = {name: "",origin :"", description: "", url: ""}
+
   displayedColumns: string[] = ["name", "origin", "description", "action"]
   sendTea(teaNameInput: HTMLInputElement,
           teaOriginInput: HTMLInputElement,
@@ -58,8 +60,35 @@ export class TableComponent {
       description: teaDescInput.value,
       url: teaUrlInput.value
     }
+    if(teaInsert.name.length === 0 || teaInsert.origin.length === 0 || teaInsert.description.length === 0) return;
     let newArray: CardModel[] = this.tableState.data;
     newArray.unshift(teaInsert);
     this.tableState.data = newArray;
+    teaNameInput.value = "";
+    teaOriginInput.value = "";
+    teaDescInput.value = "";
+    teaUrlInput.value = "";
+    let table = document.getElementById("table");
+    table !== null ? table.scrollIntoView({behavior: 'smooth'}) : "";
+  }
+
+  StartEditRecord(element: CardModel) : void {
+    this.editElement = element;
+    let popUp = document.getElementById("pop-up");
+    popUp !== null ? popUp.style.display = "flex" : "";
+  }
+  editRecord(element: CardModel, name: HTMLInputElement, origin: HTMLInputElement, desc: HTMLInputElement, url: HTMLInputElement) : void {
+    let index = this.getIndex(element);
+    let newArray: CardModel[] = this.tableState.data;
+    newArray[index].name= name.value;
+    newArray[index].origin= origin.value;
+    newArray[index].description= desc.value;
+    newArray[index].url= url.value;
+    this.tableState.data = newArray;
+    let popUp = document.getElementById("pop-up");
+    popUp !== null ? popUp.style.display = "none" : "";
+  }
+  getIndex(el: CardModel) : number {
+    return this.tableState.data.indexOf(el);
   }
 }

@@ -10,3 +10,34 @@ table {
 .example-full-width {
   width: 100%;
 }
+
+.edit-pen {
+  cursor: pointer;
+  color: #a2a2a2;
+}
+
+.edit-pen:hover {
+  color: gray;
+}
+
+#pop-up {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.68);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  input {
+    width: 40%;
+    min-width: 300px;
+    height: 50px;
+    border-radius: 15px;
+    padding-left: 10px;
+    font-size: 18px;
+  }
+}
