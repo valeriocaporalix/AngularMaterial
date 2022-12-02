@@ -1,0 +1,22 @@
+<div class=" d-flex justify-center align-center row wrap">
+  <div class=" m-high"
+       *ngFor="let element of cardState">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{element.name}}</mat-card-title>
+        <mat-card-subtitle>{{element.origin}}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="img-tea" mat-card-image [src]="element.url" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          {{element.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
